@@ -1,6 +1,0 @@
-{
-  "id": "views:ui/footer",
-  "label": "Footer!!",
-  "widget": "Template",
-  "template": "<h1>Hello World</h1>"
-}
