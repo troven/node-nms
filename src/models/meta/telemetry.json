@@ -1,0 +1,20 @@
+{
+    "id": "telemetry",
+    "label": "Telemetry Model",
+    "type": "Default",
+    "idAttribute": "_id",
+    "isClient": true,
+    "isServer": true,
+    "prefetch": true,
+    "debug": true,
+    "adapter": {
+        "type": "loki"
+    },
+    "upload": {},
+    "schema": {
+		"label": {
+			"type": "string"
+		}
+	},
+    "defaults": {},
+}

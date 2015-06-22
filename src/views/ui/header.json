@@ -1,0 +1,9 @@
+{
+  "id": "views:ui/header",
+  "widget": "MenuList",
+  "collection": [
+	{"id": "views:media_showcase/showcase", "label": "Showcase" },
+	{"id": "views:media_showcase/media", "label": "Media" }
+ ]
+
+}

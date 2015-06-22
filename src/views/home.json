@@ -1,0 +1,10 @@
+{
+  "id": "views:home",
+  "label": "meta4life",
+  "widget": "Home",
+  "views": {
+    "header": "views:ui/header",
+    "body": "views:ui/welcome",
+    "footer": "views:ui/footer"
+  }
+}

@@ -1,0 +1,29 @@
+{
+      "id": "scans",
+      "label": "Network Scan Model",
+      "type": "Default",
+      "idAttribute": "_id",
+
+
+      "isClient": true,
+      "prefetch": true,
+	"debug": true,
+
+      "isServer": true,
+      "adapter": {
+          "type": "loki"
+      },
+      "upload": {
+	"collection": "uploads"
+      },
+
+      "schema": {
+      },
+
+    "defaults": {
+      },
+
+    "data": [
+		{ "id": "s1", "title": "My 1st showcase" }
+	]
+}

@@ -1,0 +1,46 @@
+{
+	"id": "views:my_crud",
+	"widget": "CRUD",
+	"collection": "meta4users",
+	"views": {
+		"create": "edit",
+		"read": {
+			"css": "col-sm-6",
+			"widget": "ActionList",
+			"child": {
+				"template": "templates:crud_items.html"
+			}
+		},
+		"update": "edit",
+		"edit": {
+			"widget": "Form",
+			"css": "container",
+			"schema": {
+				"firstname": { 
+					"label": "First Name",
+					"required": true
+				},
+				"lastname": { 
+					"label": "Last Name",
+					"required": true
+				},
+				"username": { 
+					"label": "Username",
+					"required": true,
+					"validators": ["sanitize"]
+				},
+				"email": { 
+					"label": "Email Address",
+					"required": true,
+					"validators": ["email"]
+				},
+				"photo": { 
+					"label": "Photo",
+					"comment": "Click to change your portrait",
+					"collection": "uploads",
+					"editor": "Portrait"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,37 @@
+{
+  "name": "meta4nms",
+  "version": "0.0.1",
+  "home": "src",
+  "basePath": "/meta4nms",
+  "host": "localhost",
+  "port": 8080,
+  "salt": "-change-me-to-anything-",
+
+  "features": {
+	"assets": {
+	  "disabled": false,
+	  "path": "/",
+	  "home": "src/public"
+	},
+	"machine": {
+		"path": "/machine",
+		"home": "src/api/machines",
+		"repository": "http://nodemachine.org",
+		"config": {
+			"github": {
+				"repo": "meta4",
+				"owner": "troven"
+			}
+		}
+	},
+	"upload": {
+	 "home": "tmp/uploads",
+	 "baseURL": "/meta4nms/upload/",
+	  "limits": {
+		"fieldNameSize": 100,
+		"files": 2,
+		"fields": 5
+	  }
+	}
+  }
+}
