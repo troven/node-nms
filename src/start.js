@@ -5,12 +5,12 @@ var self = module.exports;
 var nms  = require('./index');
 
 // setup monitoring
-var ping = new nms.Probe( { type: "ICMP" } )
 var telemetry = new nms.Telemetry()
-telemetry.uses(ping)
+telemetry.uses( new nms.Probe( { type: "ICMP" } ) )
+telemetry.uses( new nms.Probe( { type: "SNMP", "community": "lee", "oid": [1,3,6,1,2,1,1,3,0] } ) )
 
 // configure hosts
-var localhost = new nms.Device( { host: "google.com" } )
+var localhost = new nms.Device( { host: "localhost" } )
 telemetry.monitors(localhost)
 
 // listen for events

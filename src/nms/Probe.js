@@ -18,9 +18,11 @@ module.exports = function(options) {
 	try {
 		Delegate = require("../probe/"+options.type)
 	} catch(e) {
+		console.log("Failed", e)
 		try {
 			Delegate = require(options.type+"-probe")
 		} catch(e) {
+			console.log("Failed #2", e)
 			Delegate = require(options.type)
 		}
 	}

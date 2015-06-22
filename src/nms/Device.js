@@ -9,17 +9,13 @@ var util 			= require('util');
 **/
 
 module.exports = function(options) {
+	if (!options || !options.host) throw "Invalid Device"
 
 	// instantiate Device
 	this.options = options || {};
 	this._lastContact = -1;
 	this._isOnline = null;
 	this._services = { "ICMP": true }
-
-	// listen for device state-change events
-	this.on("probed", function(result) {
-		// do nothing
-	})
 
 	this.on("offline", function() {
 		this._isOnline = false;
@@ -44,7 +40,7 @@ module.exports = function(options) {
 	})
 	
 	this.isOnline = function() {
-		return this._isOnline;
+		return this._isOnline?true:false;
 	}
 	
 	this.host = function() {

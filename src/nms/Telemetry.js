@@ -62,7 +62,8 @@ module.exports = function(options) {
 
 				// evaluate response
 				if (err) {
-					self.emit("error", err, probe, device)
+					console.log("error", device.host(), err)
+					self.emit("fault", ""+err, probe, device)
 					return
 				}
 
