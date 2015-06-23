@@ -5,15 +5,21 @@ A lightweight, event-driven, high-speed, Network Management framework for NodeJS
 
 It's acts the engine of meta4nms - a real-time infrastructure analytics application.
 
-The library is designed to take advantage of NodeJS's event-driven architecture.
-
-This makes it ideally suited to high-speed polling.
-
-measures responsive times and being event-driven you can listen for devices coming online/offline etc too.
+It measures responsive times and can auto-detect devices coming online/offline.
 
 Currently, it supports two monitoring strategies - probes and sensors.
 
 Both strategies are easily extended with super-simple plugins.
+
+
+Architecture
+------------
+
+The node-nms library is designed to take advantage of NodeJS's event-driven, asychronous architecture.
+
+It uses non-blocking IO through-out - care should be taken when building Probes and Sensors that they do not block or perform complex algorithms.
+
+There are 4 main components - Devices, Probes, Sensors and Telemetry. They are discussed below.
 
 Installation
 ------------
@@ -64,6 +70,14 @@ Start polling ... the interval is in milliseconds.
 
 	nms.poll(telemetry, 1000)
 
+Devices
+-------
+
+A device is a simple encapsulation of the settings and state of a monitored endpoint.
+
+The Device maintains minimal internal state - firstContacted, lastContacted & isOnline.
+
+It also provides some convenience methods such as device.host() and device.uptime().
 
 Probes
 ------

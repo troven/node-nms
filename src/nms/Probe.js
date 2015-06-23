@@ -22,7 +22,7 @@ module.exports = function(options) {
 		this._checkConfig(device)
 		
 		// check if device permits this probe
-		if (device.probes && device.probes[options.probe]==false) {
+		if (device.allows  && device.allows(options.probe) ) {
 			return
 		}
 

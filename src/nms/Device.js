@@ -15,7 +15,7 @@ module.exports = function(options) {
 	this.options = options || {};
 	this._lastContact = -1;
 	this._isOnline = null;
-	this._services = { "ICMP": true }
+	this._telemetry = _.extend({ "ICMP": true }, options.telemetry)
 
 	this.on("offline", function() {
 		this._isOnline = false;
@@ -38,6 +38,12 @@ module.exports = function(options) {
 		// announce state changes
 		if (this._isOnline!==false) this.emit("offline");
 	})
+	
+	this.allows = function(service) {
+		if (!this._telemetry || !this._telemetry.length) return true
+		var enabled = this._telemetry[service]
+		return enabled?true:false
+	}
 	
 	this.isOnline = function() {
 		return this._isOnline?true:false;
