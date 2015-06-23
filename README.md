@@ -11,9 +11,9 @@ Both are easily extended with super-simple plugins.
 
 node-nms was designed to be embedded into a larger application but it's well suited to head-less DevOps too.
 
-It's missing central configuration, persistence a UI, alarms and other niceties - quite deliberately.
+It's missing central configuration, persistence, a UI, alarms and other not-quite essentials - quite deliberately.
 
-We built node-nms as the underlying engine that (will) power "meta4nms" - an open source, real-time, Infrastructure Analytics application. We hope you'll check that out soon too.
+You see, we built node-nms as the underlying engine that (will) power "meta4nms" - an open source, real-time, Infrastructure Analytics application. We hope you'll check that out soon too.
 
 Architecture
 ------------
