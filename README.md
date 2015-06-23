@@ -3,13 +3,13 @@ NODE-NMS
 
 A lightweight, event-driven, high-speed, Network Management kernel for NodeJS. 
 
+node-nms was designed to be embedded into a larger application but it's well suited to head-less DevOps too.
+
 It measures responsive times and uptime, auto-detect devices, alert when devices come online or go offline.
 
 We support two monitoring strategies - passive probes and active Sensors. 
 
 Both are easily extended with super-simple plugins.
-
-node-nms was designed to be embedded into a larger application but it's well suited to head-less DevOps too.
 
 It's missing central configuration, persistence, a UI, alarms and other not-quite essentials - quite deliberately.
 
@@ -69,9 +69,9 @@ Listen for events from Probes or Sensors:
 		console.log(this.host(), "is offline")
 	})
 
-Start polling ... the interval is in milliseconds. 
+Start polling ... NOTE: the interval is in seconds. 
 
-	nms.poll(telemetry, 1000)
+	nms.poll(telemetry, 1)
 
 Devices
 -------

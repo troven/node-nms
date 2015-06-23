@@ -15,17 +15,20 @@ nms.init = function(options) {
 nms.poll = function(telemetry, interval) {
 	if (!telemetry) return
 	
-	// default to 1-minute
-	interval = interval || 60*1000
+	// poll in 1-minute intervals
+	interval = interval>0?interval:1
 
+	// start the Sensors
 	telemetry.start()
 
 	// periodically poll
 	setInterval(function() {
 		telemetry.poll()
-	}, interval)
+	}, (interval*1000) )
 
 }
+
+// export Factories
 
 nms.Device = require('./nms/Device')
 nms.Probe = require('./nms/Probe');
