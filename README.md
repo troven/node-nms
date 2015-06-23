@@ -79,6 +79,17 @@ The Device maintains minimal internal state - firstContacted, lastContacted & is
 
 It also provides some convenience methods such as device.host() and device.uptime().
 
+The Telemetry module treats all devices equally and will run the same probes on each registered device.
+
+Devices that don't or can't support a particular Probe can opt-out:
+
+	var localhost = new nms.Device( { host: "localhost", "probes": { "SNMP": false } } )
+
+	console.log(localhost.host(), localhost.allows("SNMP"))
+
+By default, all Probes are enabled. If any explict probes are declared, the list acts as a white-list only
+permitting explicitly enabled probes to poll that device. 
+
 Probes
 ------
 
