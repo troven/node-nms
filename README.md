@@ -1,15 +1,17 @@
 NODE-NMS
 --------
 
-A lightweight, event-driven, high-speed, Network Management kernel for NodeJS. 
+A light-weight, event-driven, high-speed Network Management kernel for NodeJS. 
 
 node-nms was designed to be embedded into a larger application but it's well suited to head-less DevOps too.
 
-It measures responsive times and uptime, auto-detect devices, alert when devices come online or go offline.
+Presently, it measures responsive times and uptime and can passively auto-detect devices. 
 
 We support two monitoring strategies - passive probes and active Sensors. 
 
 Both are easily extended with super-simple plugins.
+
+node-nms emits events when devices come online, go offline or when data is received from a Probe or Sensor.
 
 It's missing central configuration, persistence, a UI, alarms and other not-quite essentials - quite deliberately.
 
