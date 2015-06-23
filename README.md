@@ -33,11 +33,11 @@ Or, If you're reckless enough to include it into your own projects:
 Usage
 -----
 
-Setup a monitored environment / zone using a Telemetry broker
+Setup a monitored environment / zone using a Telemetry broker:
 
 	var telemetry = new nms.Telemetry()
 	
-Use Ping, SNMP and Web port scans
+Use Ping, SNMP and Web port scans:
 
 	telemetry.uses( new nms.Probe( { probe: "ICMP" } ) )
 	telemetry.uses( new nms.Probe( { probe: "SNMP", "community": "public", "oid": [1,3,6,1,2,1,1,3,0] } ) )
@@ -45,12 +45,12 @@ Use Ping, SNMP and Web port scans
 
 	//	telemetry.uses( new nms.Sensor( { sensor: "PCAP", "interface": "en0" } ) )
 	
-Configure hosts
+Configure the hosts to be monitored:
 
 	var localhost = new nms.Device( { host: "localhost" } )
 	telemetry.monitors(localhost)
 
-Listen for events
+Listen for events from Probes or Sensors:
 
 	localhost.on("online", function() {
 		console.log(this.host(), "is online")
@@ -60,7 +60,7 @@ Listen for events
 		console.log(this.host(), "is offline")
 	})
 
-Begin polling
+Start polling ... the interval is in milliseconds. 
 
 	nms.poll(telemetry, 1000)
 
