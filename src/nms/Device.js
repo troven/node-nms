@@ -1,3 +1,9 @@
+/**
+	(c) 2015 Troven Software. Authored by Lee Curtis
+	
+	Licensed under an Apache 2.0 open source license.
+**/
+
 var events 			= require('events');
 var _ 				= require('underscore');
 var util 			= require('util');
@@ -16,6 +22,8 @@ module.exports = function(options) {
 	this._lastContact = -1;
 	this._isOnline = null;
 	this._telemetry = _.extend({ "ICMP": true }, options.telemetry)
+
+	// event-driven state
 
 	this.on("offline", function() {
 		this._isOnline = false;
@@ -39,6 +47,8 @@ module.exports = function(options) {
 		if (this._isOnline!==false) this.emit("offline");
 	})
 	
+	// convenience methods
+
 	this.allows = function(service) {
 		if (!this._telemetry || !this._telemetry.length) return true
 		var enabled = this._telemetry[service]

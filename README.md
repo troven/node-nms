@@ -215,6 +215,12 @@ The data-carrying events that are triggered by node-nms share a unified response
 
 The "data" attribute contains the payload data from the probe or sensor.
 
+License
+-------
+
+	(c) 2015 Troven Software. Authored by Lee Curtis and contributors
+	Licensed under an Apache 2.0 open source license.
+
 Coming soon
 -----------
 

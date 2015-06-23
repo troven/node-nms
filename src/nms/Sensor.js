@@ -1,3 +1,9 @@
+/**
+	(c) 2015 Troven Software. Authored by Lee Curtis
+	
+	Licensed under an Apache 2.0 open source license.
+**/
+
 var _ 				= require('underscore');
 var util 			= require('../lib/util');
 
@@ -6,6 +12,7 @@ var util 			= require('../lib/util');
 /**
 	Factory method to instantiate new Sensor
 **/
+
 module.exports = function(options) {
 
 	if (!options) return;

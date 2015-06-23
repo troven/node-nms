@@ -1,3 +1,9 @@
+/**
+	(c) 2015 Troven Software. Authored by Lee Curtis
+	
+	Licensed under an Apache 2.0 open source license.
+**/
+
 var _ 				= require('underscore');
 var util 			= require('../lib/util');
 
@@ -18,6 +24,7 @@ module.exports = function(options) {
 		if (!device.emit) throw "Device is not EventEmitter"
 	}
 	
+	// interrogate the device
 	this.probe = function(device, cb) {
 		this._checkConfig(device)
 		

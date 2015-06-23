@@ -1,3 +1,9 @@
+/**
+	(c) 2015 Troven Software. Authored by Lee Curtis
+	
+	Licensed under an Apache 2.0 open source license.
+**/
+
 var nms = module.exports;
 
 // =============================================================================
@@ -9,11 +15,12 @@ var _ 				= require('underscore');
 
 nms.init = function(options) {
 	this.options = options || {}
-	console.log("NMS:", this.options)
 }
+
 
 nms.poll = function(telemetry, interval) {
 	if (!telemetry) return
+	if (!telemetry.poll || !telemetry.start) throw "Invalid Telemetry"
 	
 	// poll in 1-minute intervals
 	interval = interval>0?interval:1

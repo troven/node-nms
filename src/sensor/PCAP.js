@@ -1,3 +1,9 @@
+/**
+	(c) 2015 Troven Software. Authored by Lee Curtis
+	
+	Licensed under an Apache 2.0 open source license.
+**/
+
 var net 		= require('net');
 var util		= require("../lib/util");
 var _ 			= require('underscore');
@@ -10,7 +16,6 @@ var pcap 		= require('pcap')
 	Passively listen for network traffic based on libpcap
 	Supports packet filtering
 **/
-
 
 module.exports = function(options) {
 	if (!options) return

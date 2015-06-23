@@ -1,3 +1,9 @@
+/**
+	(c) 2015 Troven Software. Authored by Lee Curtis
+	
+	Licensed under an Apache 2.0 open source license.
+**/
+
 var events 			= require('events');
 var _ 				= require('underscore');
 var util 			= require('util');
@@ -7,6 +13,7 @@ var util 			= require('util');
 /**
 	Factory method to instantiate new Telemetry
 **/
+
 module.exports = function(options) {
 	options = options || {}
 	var self = this
@@ -20,10 +27,8 @@ module.exports = function(options) {
 
 	// instantiate telemetry
 	_.each(this.options.probes, function(p_options) {
-	
 		var probe = nms.Probe(p_options)
 		self.addProbe(probe)
-	
 	});
 	
 	// add a Probe
@@ -45,13 +50,15 @@ module.exports = function(options) {
 		this._devices.push(device);
 	}
 	
+	// start all Sensors
 	this.start = function() {
 		_.each(this._sensors, function(sensor) {
 			sensor.start && sensor.start();
 		});
 		this.emit("start")
 	}
-	
+
+	// stop all Sensors
 	this.stop = function() {
 		_.each(this._sensors, function(sensor) {
 			sensor.stop && sensor.stop();

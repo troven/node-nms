@@ -1,3 +1,9 @@
+/**
+	(c) 2015 Troven Software. Authored by Lee Curtis
+	
+	Licensed under an Apache 2.0 open source license.
+**/
+
 var snmp 		= require('snmp-native');
 var util		= require("../lib/util");
 var _ 			= require('underscore');
@@ -38,7 +44,6 @@ module.exports = function(device, options, cb) {
 
 	getScalarSNMP(session, { oid: oid }, onSNMPResponse )
 }
-
 
 function getScalarSNMP(session, query, cb) {
 

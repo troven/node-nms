@@ -1,3 +1,9 @@
+/**
+	(c) 2015 Troven Software. Authored by Lee Curtis
+	
+	Licensed under an Apache 2.0 open source license.
+**/
+
 var ping 			= require ("ping");
 
 // =============================================================================
@@ -17,7 +23,7 @@ module.exports = function(device, options, cb) {
 
 		// host is online
 		cb && cb( null, { isAlive: true } )
-});
+	});
 
 }
 
