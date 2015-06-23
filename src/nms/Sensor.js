@@ -1,5 +1,5 @@
 var _ 				= require('underscore');
-var util 			= require('util');
+var util 			= require('../lib/util');
 
 // =============================================================================
 
@@ -12,23 +12,6 @@ module.exports = function(options) {
 	this.options = options
 	var self = this
 
-	this.proxy = function(strategy, type) {
-		// resolve packages
-		// first search local, then probe plug-ins, then global
-		try {
-			return require("../"+strategy+"/"+type)
-		} catch(e) {
-			console.log("Failed", e)
-			try {
-				return require(type+"-"+strategy)
-			} catch(e) {
-				console.log("Failed #2", e)
-				return require(type)
-			}
-		}
-		return false
-	}
-	
 	this._checkConfig = function(device, cb) {
 		if (!device) return
 		if (!device.options.host) throw "Probe requires {{device.host}}"
@@ -38,7 +21,7 @@ module.exports = function(options) {
 	this.start = function() {
 
 		// resolve and delegate the Sensor
-		var sensorProxy = this.proxy("sensor", options.sensor)
+		var sensorProxy = util.resolveProxy("sensor", options.sensor)
 		if (!sensorProxy) throw "Missing Sensor: "+options.sensor
 		var sensor = sensorProxy(options)
 		sensor.start()

@@ -49,20 +49,20 @@ var onRawPacket = function(raw) {
 			onARPPacket(this.options, packet)
 			break;
 		default:
-			device.emit("pcap:raw", { meta: this.options, data: raw } );
+			this.emit("pcap:raw", { meta: this.options, data: raw } );
 			break;
 	}
 }
 
 var onPupPacket = function(options, packet) {
-	device.emit("pcap:pup", { meta: options, data: packet } );
+	this.emit("pcap:pup", { meta: options, data: packet } );
 }
 
 var onIPPacket = function(options, packet) {
-	device.emit("pcap:ip", { meta: options, data: packet } );
+	this.emit("pcap:ip", { meta: options, data: packet } );
 }
 
 var onARPPacket = function(options, packet) {
-	device.emit("pcap:arp", { meta: options, data: packet } );
+	this.emit("pcap:arp", { meta: options, data: packet } );
 }
 

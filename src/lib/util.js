@@ -24,3 +24,21 @@ self.addToTable = function(table, oids, value) {
 	if (_.isString(value)) value = value.replace(/\0/g, '')
 	table[oids[1]][oids[0]] = value
 }
+
+self.resolveProxy = function(strategy, type) {
+	// resolve packages
+	// first search local, then probe plug-ins, then global
+	try {
+		return require("../"+strategy+"/"+type)
+	} catch(e) {
+		console.log("Failed", e)
+		try {
+			return require(type+"-"+strategy)
+		} catch(e) {
+			console.log("Failed #2", e)
+			return require(type)
+		}
+	}
+	return false
+}
+
