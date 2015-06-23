@@ -1,25 +1,22 @@
 NodeNMS
 ---------
 
-A lightweight, event-driven, high-speed, Network Management framework for NodeJS.
+A lightweight, event-driven, high-speed, Network Management framework for NodeJS. It measures responsive times and uptime, auto-detect devices, alert when devices come online or go offline.
 
-It's acts the engine of meta4nms - a real-time infrastructure analytics application.
+Currently, it supports two monitoring strategies - probes and sensors. Both strategies are easily extended with super-simple plugins.
 
-It measures responsive times and can auto-detect devices coming online/offline.
+There are 4 main components - Devices, Probes, Sensors and Telemetry. They are discussed below.
 
-Currently, it supports two monitoring strategies - probes and sensors.
+It's designed to be embedded into a larger application but it's well suited to head-less DevOps too.
 
-Both strategies are easily extended with super-simple plugins.
-
+node-nms is the engine that (will) power "meta4nms" - an open source, real-time, infrastructure analytics application.
 
 Architecture
 ------------
 
 The node-nms library is designed to take advantage of NodeJS's event-driven, asychronous architecture.
 
-It uses non-blocking IO through-out - care should be taken when building Probes and Sensors that they do not block or perform complex algorithms.
-
-There are 4 main components - Devices, Probes, Sensors and Telemetry. They are discussed below.
+It uses (and requires) non-blocking IO through-out - so care should be taken when building custom Probes and Sensors that they do not cause a deadlock or perform indulgent algorithms.
 
 Installation
 ------------
@@ -131,7 +128,6 @@ Sensors provide situation awareness, a sensor notifies node-nms whenever a new d
 The PCAP sensor is a good example, another might be observing an IoT node using MQTT
 
 In the next release, a REST-ful API callback will allow 3rd party scripts to inject events.
-
 
 	PCAP	- device discovery based on libpcap
 
