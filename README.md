@@ -1,17 +1,15 @@
 NodeNMS
 ---------
 
-A lightweight, event-driven, high-speed, Network Management framework for NodeJS. It measures responsive times and uptime, auto-detect devices, alert when devices come online or go offline.
+A lightweight, event-driven, high-speed, Network Management kernel for NodeJS. It measures responsive times and uptime, auto-detect devices, alert when devices come online or go offline.
 
-Currently, it supports two monitoring strategies - probes and sensors. Both strategies are easily extended with super-simple plugins.
-
-There are 4 main components - Devices, Probes, Sensors and Telemetry. They are discussed below.
+We support two monitoring strategies - probes and sensors. Both are easily extended with super-simple plugins.
 
 It's missing central configuration, persistence and other niceties - deliberately.
 
-node-nms is designed to be embedded into a larger application but it's well suited to head-less DevOps too.
+node-nms was designed to be embedded into a larger application but it's well suited to head-less DevOps too.
 
-We built node-nms as the underlying engine that (will) power "meta4nms" - an open source, real-time, infrastructure analytics application.
+We built node-nms as the underlying engine that (will) power "meta4nms" - an open source, real-time, Infrastructure Analytics application.
 
 Architecture
 ------------
@@ -19,6 +17,10 @@ Architecture
 The node-nms library is designed to take advantage of NodeJS's event-driven, asychronous architecture.
 
 It uses (and requires) non-blocking IO throughout - so care should be taken when building custom Probes and Sensors that they do not cause a deadlock or perform indulgent algorithms.
+
+There are 4 main components - Devices, Probes, Sensors and Telemetry. They are discussed below.
+
+It's pretty simple really. The exciting part is what you can do with an easy to integrate network telemetry tool inside your environment. 
 
 Installation
 ------------
