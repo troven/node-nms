@@ -168,6 +168,15 @@ This is a big and very interesting topic. Here are some ideas to get you started
 
 5) any more ideas?
 
+Plug Ins
+--------
+
+Probe
+
+	module.exports = function(device, options, cb) {
+
+Sensor
+
 Data Modelling
 --------------
 
