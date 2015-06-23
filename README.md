@@ -22,8 +22,8 @@ It's missing central configuration and other niceties - so very much for experim
 
 That said, it's fairly easy to work with the ./src/start.js file is a good place to start.
 
-	git clone https://github.com/troven/NodeNMS.git
-	cd NodeNMS
+	git clone https://github.com/troven/node-nms.git
+	cd node-nms
 	node src/start
 
 Or, If you're reckless enough to include it into your own projects:
@@ -33,7 +33,7 @@ Or, If you're reckless enough to include it into your own projects:
 Usage
 -----
 
-Setup our our monitored environment - devices & services
+Setup a monitored environment / zone using a Telemetry broker
 
 	var telemetry = new nms.Telemetry()
 	
@@ -65,16 +65,31 @@ Begin polling
 	nms.poll(telemetry, 1000)
 
 
-
 Probes
 ------
 
 A probe is an active agent, it works by synchronously polling the device for information.
 
+Probes are great for measuring responsive time of remote services using synthetic transactions.
+
+They are used for remote data collection too, such as with SNMP.
+
+An obvious Probe would interrogate a web page or API service and return parsed results.
+
 
 	ICMP 	- the classic ping probe
 	TCP	 	- simple, effective TCP port probe
 	SNMP	- ubiquitious network infrastructure polling
+
+	UDP		- coming soon
+	HTTP	- coming soon
+	HTTPS	- coming soon
+	JMX		- coming soon
+	WMI		- coming soon
+	Nagios	- coming soon
+	SQL		- coming soon
+
+Telemetry data is acquired by listening for "poll" events being emitted from the device.
 
 Sensors
 -------
@@ -82,4 +97,30 @@ Sensors
 A sensor is a passive agent, it asynchronously listens for events from some source and injects them into 
 the NodeNMS core.
 
+Sensors provide situation awareness, a sensor notifies node-nms whenever a new device or service appears.
+
+The PCAP sensor is a good example.
+
+In the next release, a REST-ful API callback will allow 3rd party scripts to inject events.
+
+
 	PCAP	- device discovery based on libpcap
+	REST	- coming soon
+	PubSub	- coming soon
+	MQ		- coming soon
+	XMPP	- coming soon
+
+Telemetry data is acquired by listening for "discover" events being emitted from the Telemetry broker.
+
+Data Modelling
+--------------
+
+The data-carrying events that are triggered by node-nms share a unified response format.
+
+	{
+		meta: { ... about the agent - usually configuration options ... }
+		data: [],
+		responseTime: 0
+	}
+
+The "data" attribute contains the payload data from the probe or sensor.
