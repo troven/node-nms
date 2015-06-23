@@ -51,6 +51,7 @@ Configure hosts
 	telemetry.monitors(localhost)
 
 Listen for events
+
 	localhost.on("online", function() {
 		console.log(this.host(), "is online")
 	})
