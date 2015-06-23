@@ -1,6 +1,6 @@
 {
   "name": "node-nms",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A lightweight infrastructure monitoring framework for NodeJS",
   "main": "src/start.js",
   "scripts": {
@@ -23,6 +23,7 @@
     "url": "https://github.com/troven/NodeNMS.git"
   },
   "dependencies": {
+    "pcap": "^2.0.1",
     "ping": "^0.1.10",
     "rethinkdb": "^2.0.0-2",
     "underscore": "^1.8.3"

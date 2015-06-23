@@ -14,6 +14,7 @@ module.exports = function(options) {
 	// instantiate Telemetry
 	this.options = options || {};
 	this._probes = []
+	this._sensors = []
 	this._devices = []
 	this._lastMeasurement = -1;
 
@@ -26,10 +27,15 @@ module.exports = function(options) {
 	});
 	
 	// add a Probe
-	this.uses = function(probe) {
-		if (!probe) return
-		if (!probe.contact) throw "Invalid Probe"
-		this._probes.push(probe);
+	this.uses = function(proxy) {
+		if (!proxy) return
+		var options = proxy.options
+		
+		if (options.probe) {
+			this._probes.push(proxy);
+		} else if (options.sensor) {
+			this._sensors.push(proxy);
+		} else throw "Invalid Probe/Sensor:"+options
 	}
 
 	// probes a device
@@ -39,26 +45,46 @@ module.exports = function(options) {
 		this._devices.push(device);
 	}
 	
-	// probe each device
-	this.execute = function() {
-		// attempt contact with each device for each registered Probe
-
-		_.each(self._devices, function(device) {
-			self._contact(device);
+	this.start = function() {
+		_.each(this._sensors, function(sensor) {
+			sensor.start && sensor.start();
 		});
-		this._lastMeasurement = new Date().getTime()
+		this.emit("start")
+	}
+	
+	this.stop = function() {
+		_.each(this._sensors, function(sensor) {
+			sensor.stop && sensor.stop();
+		});
+		this.emit("stop")
+	}
+
+	// manually probe each device
+	this.poll = function() {
+
+		// attempt contact with each device for each registered Probe
+		_.each(self._devices, function(device) {
+			self.probe(device);
+		});
+
+		// housekeeping
+		this._lastPoll = new Date().getTime()
+		this.emit("poll")
 	}
 
 	// comprehensively probe a device
 	// measure response time
 	// emit 'probed' events
 	
-	this._contact = function(device) {
+	this.probe = function(device) {
+		if (!device) return
+		if (!device.host) throw "Invalid Device"
+
 		_.each(self._probes, function(probe) {
 			var then = new Date().getTime()
 
 			// run the probe
-			probe.contact( device, function(err, result) {
+			probe.probe( device, function(err, result) {
 
 				// evaluate response
 				if (err) {
@@ -68,8 +94,8 @@ module.exports = function(options) {
 				}
 
 				// announce results
-				device.emit("probed", result)
-				console.log("probed", device.host(), result)
+				device.emit("probe", result)
+				self.emit("probe", result)
 			})
 		});
 	}

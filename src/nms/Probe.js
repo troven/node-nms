@@ -8,23 +8,25 @@ var util 			= require('util');
 **/
 module.exports = function(options) {
 
-	// create a new Probe
-	this.options = options || { "type": "ICMP" };
+	if (!options) return
+	if (!options.probe) throw "Invalid Probe"
+	var self = this
 
-	var Delegate = false
-	
-	// resolve packages
-	// first search local, then probe plug-ins, then global
-	try {
-		Delegate = require("../probe/"+options.type)
-	} catch(e) {
-		console.log("Failed", e)
+	this.proxy = function(strategy, type) {
+		// resolve packages
+		// first search local, then probe plug-ins, then global
 		try {
-			Delegate = require(options.type+"-probe")
+			return require("../"+strategy+"/"+type)
 		} catch(e) {
-			console.log("Failed #2", e)
-			Delegate = require(options.type)
+			console.log("Failed", e)
+			try {
+				return require(type+"-"+strategy)
+			} catch(e) {
+				console.log("Failed #2", e)
+				return require(type)
+			}
 		}
+		return false
 	}
 	
 	this._checkConfig = function(device, cb) {
@@ -33,17 +35,31 @@ module.exports = function(options) {
 		if (!device.emit) throw "Device is not EventEmitter"
 	}
 	
-	this.contact = function(device, cb) {
+	this.probe = function(device, cb) {
 		this._checkConfig(device)
 		
+		// check if device permits this probe
+		if (device.probes && device.probes[options.probe]==false) {
+			return
+		}
+
+		// time the roundtrip
 		var then = new Date().getTime()
-		// attempt safely
+
+		// safely delegate the Probe
 		try {
-			Delegate(device, options, function(err, result) {
+			var probeProxy = this.proxy("probe", options.probe)
+			if (!probeProxy) throw "Missing Probe: "+options.probe
+
+			probeProxy(device, options, function(err, result) {
+				var response = { meta: self.options, data: result }
+
+				// basic performance monitoring
 				var now = new Date().getTime()
-				// baseline performance monitoring
-				result.responseTime = now - then
-				cb && cb(err, result)
+				response.meta.responseTime = now - then
+
+				// return to Telemetry
+				cb && cb(err, response )
 			})
 		} catch(e) {
 			cb && cb(""+e)

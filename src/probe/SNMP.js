@@ -22,13 +22,18 @@ module.exports = function(device, options, cb) {
 		community: options.community });
 
 	var onSNMPResponse = function(err, results) {
-		if (err) throw err
+		if (err) {
+			cb && cb( err )
+			return
+		}
 
 		// host is online
 		device.emit("contact")
 		
 		//return to probe
-		cb && cb( null, { "probe": "SNMP", data: results } )
+		cb && cb( null, results )
+		
+		session.close()
 	}
 
 	getScalarSNMP(session, { oid: oid }, onSNMPResponse )

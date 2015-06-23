@@ -18,13 +18,16 @@ nms.poll = function(telemetry, interval) {
 	// default to 1-minute
 	interval = interval || 60*1000
 
+	telemetry.start()
+
 	// periodically poll
 	setInterval(function() {
-		telemetry.execute()
+		telemetry.poll()
 	}, interval)
 
 }
 
 nms.Device = require('./nms/Device')
 nms.Probe = require('./nms/Probe');
+nms.Sensor = require('./nms/Sensor');
 nms.Telemetry = require('./nms/Telemetry');

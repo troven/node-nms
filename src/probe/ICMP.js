@@ -16,7 +16,7 @@ module.exports = function(device, options, cb) {
 		if (!isAlive) return
 
 		// host is online
-		cb && cb( null, { "probe": "ICMP", data: { isAlive: true } } )
+		cb && cb( null, { isAlive: true } )
 });
 
 }

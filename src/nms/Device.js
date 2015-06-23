@@ -46,7 +46,7 @@ module.exports = function(options) {
 	this.host = function() {
 		return this.options.host
 	}
-	
+
 	this.uptime = function() {
 		if (!this._firstContact) return 0
 		return this._lastContact-this._firstContact
