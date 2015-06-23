@@ -180,8 +180,8 @@ The "data" attribute contains the payload data from the probe or sensor.
 Coming soon
 -----------
 
-This is an experimental project, and as such there will be bursts of activity and many improvements.
+This is an experimental project, and as such there will be huge bursts of activity and many improvements.
 
-The general format, event signatures and APIs are fairly robust - but we make no promises and your mileage may vary.
+The general contracts - the event signatures and APIs are fairly robust. But ... we make no promises and your mileage may vary as we bump up those versions.
 
 Of course, we'd love you to lend a hand ...
