@@ -33,22 +33,24 @@ Or, If you're reckless enough to include it into your own projects:
 Usage
 -----
 
-	// setup Telemetry for our monitored environment - devices & services
+Setup our our monitored environment - devices & services
 
 	var telemetry = new nms.Telemetry()
 	
-	// Ping, SNMP and Web port scans
+Use Ping, SNMP and Web port scans
+
 	telemetry.uses( new nms.Probe( { probe: "ICMP" } ) )
 	telemetry.uses( new nms.Probe( { probe: "SNMP", "community": "public", "oid": [1,3,6,1,2,1,1,3,0] } ) )
 	telemetry.uses( new nms.Probe( { probe: "TCP", "port": 80 } ) )
 
-//	telemetry.uses( new nms.Sensor( { sensor: "PCAP", "interface": "en0" } ) )
+	//	telemetry.uses( new nms.Sensor( { sensor: "PCAP", "interface": "en0" } ) )
 	
-	// configure hosts
+Configure hosts
+
 	var localhost = new nms.Device( { host: "localhost" } )
 	telemetry.monitors(localhost)
 
-	// listen for events
+Listen for events
 	localhost.on("online", function() {
 		console.log(this.host(), "is online")
 	})
@@ -57,12 +59,9 @@ Usage
 		console.log(this.host(), "is offline")
 	})
 
-	// begin polling
+Begin polling
 
-	console.log("monitoring ...")
 	nms.poll(telemetry, 1000)
-
-	// we're done ....
 
 
 
