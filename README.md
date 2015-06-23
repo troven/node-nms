@@ -7,21 +7,21 @@ Currently, it supports two monitoring strategies - probes and sensors. Both stra
 
 There are 4 main components - Devices, Probes, Sensors and Telemetry. They are discussed below.
 
-It's designed to be embedded into a larger application but it's well suited to head-less DevOps too.
+It's missing central configuration, persistence and other niceties - deliberately.
 
-node-nms is the engine that (will) power "meta4nms" - an open source, real-time, infrastructure analytics application.
+node-nms is designed to be embedded into a larger application but it's well suited to head-less DevOps too.
+
+We built node-nms as the underlying engine that (will) power "meta4nms" - an open source, real-time, infrastructure analytics application.
 
 Architecture
 ------------
 
 The node-nms library is designed to take advantage of NodeJS's event-driven, asychronous architecture.
 
-It uses (and requires) non-blocking IO through-out - so care should be taken when building custom Probes and Sensors that they do not cause a deadlock or perform indulgent algorithms.
+It uses (and requires) non-blocking IO throughout - so care should be taken when building custom Probes and Sensors that they do not cause a deadlock or perform indulgent algorithms.
 
 Installation
 ------------
-
-It's missing central configuration and other niceties - so very much for experimentalists.
 
 That said, it's fairly easy to work with the ./src/start.js file is a good place to start.
 
