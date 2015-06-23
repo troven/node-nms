@@ -168,14 +168,31 @@ This is a big and very interesting topic. Here are some ideas to get you started
 
 5) any more ideas?
 
+Event Correlation
+-----------------
+
+This is another big topic, and one best postponed until another day :-)
+
 Plug Ins
 --------
 
 Probe
 
 	module.exports = function(device, options, cb) {
+		// measure something
+		// trigger meaningful device events
+		// return result
+	}
 
 Sensor
+
+	module.exports = function(options) {
+		// observe something
+		// trigger meaningful mode-nms events
+		// return result
+	}
+
+** A sensor must also implement
 
 Data Modelling
 --------------
