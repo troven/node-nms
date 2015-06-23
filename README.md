@@ -95,10 +95,12 @@ Devices that don't or can't support a particular Probe can opt-out:
 By default, all Probes are enabled. If any explict probes are declared, the list acts as a white-list only
 permitting explicitly enabled probes to poll that device. 
 
+Sensors cannot be manually excluded, this will change soon.
+
 Probes
 ------
 
-A probe is an active agent, it works by synchronously polling the device for information.
+A Probe is an active agent, it works by synchronously polling the device for information.
 
 Probes are great for measuring responsive time of remote services using synthetic transactions.
 
@@ -126,8 +128,10 @@ A Probe retains no state between devices or invocations.
 Sensors
 -------
 
-A sensor is a passive agent. It asynchronously listens for events from some source and injects them into 
+A Sensor is a reactive agent. It asynchronously listens for events from some source and injects them into 
 the NodeNMS core.
+
+As a result, they are much simpler to create and configure. The remote endpoint does most of the work, node-nms should simply make some basic decisions and forward the event to Telemtry.
 
 A sensor is a long-running process - it will listen until it you tell it to stop(). They are quite light weight, and should store no or very minimal state.
 
