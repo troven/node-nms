@@ -1,6 +1,6 @@
 {
   "name": "node-nms",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "description": "A lightweight infrastructure monitoring framework for NodeJS",
   "main": "src/start.js",
   "scripts": {
