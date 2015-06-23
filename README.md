@@ -52,7 +52,9 @@ Use Ping, SNMP and Web port scans:
 	telemetry.uses( new nms.Probe( { probe: "SNMP", "community": "public", "oid": [1,3,6,1,2,1,1,3,0] } ) )
 	telemetry.uses( new nms.Probe( { probe: "TCP", "port": 80 } ) )
 
-	//	telemetry.uses( new nms.Sensor( { sensor: "PCAP", "interface": "en0" } ) )
+Or promiscuously listen for network activity:
+
+	telemetry.uses( new nms.Sensor( { sensor: "PCAP", "interface": "en0" } ) )
 	
 Configure the hosts to be monitored:
 
